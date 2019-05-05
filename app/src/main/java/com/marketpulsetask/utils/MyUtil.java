@@ -16,9 +16,14 @@ public class MyUtil {
      * Show Message  LENGTH_SHORT
      */
     public static void showToast(Context context, String msg) {
-        Toast toast = Toast.makeText(context, msg, Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.show();
+        try {
+            Toast toast = Toast.makeText(context, msg, Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
