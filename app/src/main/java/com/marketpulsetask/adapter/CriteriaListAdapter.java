@@ -84,7 +84,6 @@ public class CriteriaListAdapter extends RecyclerView.Adapter<CriteriaListAdapte
                 @Override
                 public void onClick(View textView) {
                     Log.e("click", "click " + tag);
-                    String searchText = tag.replace("@", ""); //replace '@' with blank character to search on google.
                 }
 
                 @Override
@@ -95,16 +94,6 @@ public class CriteriaListAdapter extends RecyclerView.Adapter<CriteriaListAdapte
             };
             spanString.setSpan(clickableSpan, matcher.start(), matcher.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
-
-        holder.binding.tvText.setText(text);
-        /*holder.binding.tvText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (responseDataList.get(position).getVariable() != null) {
-                    listener.criteriaItemClicked(Objects.requireNonNull(responseDataList.get(position).getVariable()), position);
-                }
-            }
-        });*/
     }
 
     protected void setTextViewHTML(TextView text, String html) {

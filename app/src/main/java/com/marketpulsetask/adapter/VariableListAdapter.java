@@ -13,7 +13,6 @@ import com.marketpulsetask.ui.global.RecyclerViewItemClickListener;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class VariableListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -67,14 +66,6 @@ public class VariableListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 valueViewHolder.rowItemValueVariableBinding.setValue(variableItemDataList.get(position).getValues().get(position));
                 break;
         }
-
-      /*  holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.onItemClick(variableItemDataList.get(position), position);
-            }
-        });*/
-
     }
 
     @Override
