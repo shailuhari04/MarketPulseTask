@@ -9,7 +9,7 @@ data class CriteriaItem(
     val type: String? = null,
     @SerializedName("variable")
     @Expose
-    val variable: Map<String, VariableItems>? = null
+    val variable: HashMap<String, VariableItems>? = null
 
 
 ) {

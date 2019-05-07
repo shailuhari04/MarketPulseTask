@@ -9,19 +9,19 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.marketpulsetask.R;
 import com.marketpulsetask.databinding.RowItemParentBinding;
-import com.marketpulsetask.pojo.CriteriaItem;
 import com.marketpulsetask.pojo.Response;
+import com.marketpulsetask.ui.global.RecyclerViewItemClickListener;
 import com.marketpulsetask.utils.Constants;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> {
     private ArrayList<Response> responseDataList;
-    private ItemClickCallback listener;
+    private RecyclerViewItemClickListener listener;
 
-    public ListAdapter(@NotNull ArrayList<Response> responseDataList, @NotNull ItemClickCallback listener) {
+    public ListAdapter(@NotNull ArrayList<Response> responseDataList, @NotNull RecyclerViewItemClickListener listener) {
 
         this.responseDataList = responseDataList;
         this.listener = listener;
@@ -46,16 +46,18 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> 
 
         String color = responseDataList.get(position).getColor();
 
-        if (color.equalsIgnoreCase(Constants.Companion.getCOLOR_GREEN())) {
-            holder.rowItemParentBinding.type.setTextColor(Color.GREEN);
-        } else if (color.equalsIgnoreCase(Constants.Companion.getCOLOR_RED())) {
-            holder.rowItemParentBinding.type.setTextColor(Color.RED);
+        if (color != null) {
+            if (color.equalsIgnoreCase(Constants.Companion.getCOLOR_GREEN())) {
+                holder.rowItemParentBinding.tvTag.setTextColor(Color.GREEN);
+            } else if (color.equalsIgnoreCase(Constants.Companion.getCOLOR_RED())) {
+                holder.rowItemParentBinding.tvTag.setTextColor(Color.RED);
+            }
         }
 
-        holder.rowItemParentBinding.name.setOnClickListener(new View.OnClickListener() {
+        holder.rowItemParentBinding.tvName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onItemClick(responseDataList.get(position).getCriteria(), position);
+                listener.parentItemClicked(Objects.requireNonNull(responseDataList.get(position).getCriteria()), position);
             }
         });
     }
@@ -73,9 +75,5 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> 
             this.rowItemParentBinding = rowItemParentBinding;
         }
 
-    }
-
-    public interface ItemClickCallback {
-        void onItemClick(List<CriteriaItem> criteriaItemList, int position);
     }
 }

@@ -2,8 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-        <variable name="model" type="com.marketpulsetask.pojo.Response"/>
-        <import type="com.marketpulsetask.utils.Constants"/>
+        <variable name="model" type="com.marketpulsetask.pojo.CriteriaItem"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -16,11 +15,11 @@
                 android:background="@android:color/white"
                 android:layout_marginBottom="16dp"
                 android:layout_height="0.1dp" android:id="@+id/view2" app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_tag" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_and" android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="16dp" android:layout_marginStart="16dp"/>
         <TextView
-                android:id="@+id/tv_name"
+                android:id="@+id/tv_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
@@ -28,20 +27,21 @@
                 android:layout_marginTop="10dp"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
-                android:text='@{model.name}'
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="16dp" android:layout_marginStart="16dp"/>
+        <!-- android:text='@{model.text}'-->
 
         <TextView
-                android:id="@+id/tv_tag"
+                android:id="@+id/tv_and"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
-                android:text='@{model.tag}'
+                android:text="and"
                 android:textColor="@android:color/white"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_name" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_text" app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="16dp" android:layout_marginStart="16dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,5 +17,9 @@ class Constants {
 
         val BUNDLE_DATA = "bundle_data"
         val CRITERIA_BUNDLE = "criteria_bundle"
+
+        val PARENT_ADAPTER = "parent_adapter"
+        val CRITERIA_ADAPTER = "criteria_adapter"
+        val VARIABLE_ADAPTER = "variable_adapter"
     }
 }

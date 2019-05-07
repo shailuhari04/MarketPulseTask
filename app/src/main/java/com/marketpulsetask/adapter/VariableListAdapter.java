@@ -1,7 +1,6 @@
 package com.marketpulsetask.adapter;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -10,27 +9,27 @@ import com.marketpulsetask.R;
 import com.marketpulsetask.databinding.RowItemIndecatorVariableBinding;
 import com.marketpulsetask.databinding.RowItemValueVariableBinding;
 import com.marketpulsetask.pojo.VariableItems;
+import com.marketpulsetask.ui.global.RecyclerViewItemClickListener;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class VariableListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private ArrayList<VariableItems> variableItemDataList;
-    private ItemClickCallback listener;
+    private HashMap<String, VariableItems> variableItemDataList;
+    private RecyclerViewItemClickListener listener;
     private boolean isIndicatorType = false;
     private int currentPossition = 0;
 
-    public VariableListAdapter(@NotNull ArrayList<VariableItems> variableItemDataList, @NotNull ItemClickCallback listener) {
-
-        this.variableItemDataList = variableItemDataList;
+    public VariableListAdapter(@NotNull HashMap<String, VariableItems> variable, @NotNull RecyclerViewItemClickListener listener) {
+        this.variableItemDataList = variable;
         this.listener = listener;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v;
         RecyclerView.ViewHolder vh;
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         if (layoutInflater == null) {
@@ -46,7 +45,7 @@ public class VariableListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 return vh;
             default:
                 RowItemValueVariableBinding rowItemValueVariableBinding =
-                        DataBindingUtil.inflate(layoutInflater, R.layout.row_item_indecator_variable, parent, false);
+                        DataBindingUtil.inflate(layoutInflater, R.layout.row_item_value_variable, parent, false);
                 vh = new ValueViewHolder(rowItemValueVariableBinding);
                 isIndicatorType = false;
                 return vh;
@@ -88,7 +87,8 @@ public class VariableListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public int getItemCount() {
-        return isIndicatorType ? variableItemDataList.size() : variableItemDataList.get(currentPossition).getValues().size();
+        return variableItemDataList.values().size();
+        // return isIndicatorType ? variableItemDataList.size() : variableItemDataList.get(currentPossition).getValues().size();
     }
 
     public class IndicatorViewHolder extends RecyclerView.ViewHolder {
@@ -109,9 +109,5 @@ public class VariableListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             super(binding.getRoot());
             this.rowItemValueVariableBinding = binding;
         }
-    }
-
-    public interface ItemClickCallback {
-        void onItemClick(VariableItems variableItem, int position);
     }
 }
