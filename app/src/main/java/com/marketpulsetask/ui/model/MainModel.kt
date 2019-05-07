@@ -8,6 +8,6 @@ import io.reactivex.Observable
 class MainModel : BaseObservable() {
 
     fun fetchData(): Observable<List<Response>>? {
-        return RetrofitClient.getAPIService().data1
+        return RetrofitClient.getAPIService().data
     }
 }
